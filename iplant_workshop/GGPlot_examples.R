@@ -64,3 +64,39 @@ myplot_diamond
 library(MASS)
 
 ggplot(birthwt, aes(factor(race), bwt)) + geom_boxplot()
+
+# 
+myBoxplot <- ggplot(birthwt, aes(factor(race), bwt)) + geom_boxplot()
+myBoxplot
+
+#======================================================================================#
+#Faceting
+
+#Y axis is split
+myplotFacet <- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + 
+  geom_point(aes(shape = Species),size = 5) + facet_grid(.~Species)
+myplotFacet
+
+# X axis is split
+myplotFacet2 <- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + 
+  geom_point(aes(shape = Species),size = 5) + facet_grid(Species~.)
+myplotFacet2
+
+# to Wrap
+myplotFacet3 <- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + 
+  geom_point(aes(shape = Species),size = 5) + facet_wrap(Species~)
+myplotFacet3
+
+#======================================================================================#
+
+#Color brewer
+library(RColorBrewer)
+df <- melt(iris, id.vars = 'Species')
+ggplot (df,aes(Species, value, fill = variable))+
+  geom_bar(stat = 'identity', position ="dodge")+
+  scale_fill_brewer(palette = "Set1")
+
+# Adding continuous Scale
+
+library(MASS)
+
